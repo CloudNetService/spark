@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation('com.github.derklaro.spark', '<submodule>', 'master-SNAPSHOT')
+    implementation('com.github.CloudNetService.spark', '<submodule>', 'main-SNAPSHOT')
 }
 ```
 
