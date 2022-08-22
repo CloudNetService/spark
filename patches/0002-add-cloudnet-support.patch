@@ -5,7 +5,7 @@ Subject: [PATCH] add cloudnet support
 
 
 diff --git a/build.gradle b/build.gradle
-index 2c139bb522fa0aa0b529eeb6acb0abc0d5e7a641..87345a87c62fe610bfb012f592934d80164d66e8 100644
+index 2c139bb522fa0aa0b529eeb6acb0abc0d5e7a641..8327cf7fa5f1a689475ff95c120b881e3e220a8c 100644
 --- a/build.gradle
 +++ b/build.gradle
 @@ -26,7 +26,7 @@ subprojects {
@@ -17,12 +17,7 @@ index 2c139bb522fa0aa0b529eeb6acb0abc0d5e7a641..87345a87c62fe610bfb012f592934d80
      }
  
      processResources {
-@@ -41,10 +41,12 @@ subprojects {
-     repositories {
-         mavenCentral()
-         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-+        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" } // cloudnet
-         maven { url "https://repo.lucko.me/" }
+@@ -45,6 +45,7 @@ subprojects {
          maven { url "https://jitpack.io" }
      }
  
@@ -42,10 +37,10 @@ index de6126d4a1918be9cdb2c37038c2b0cb5a19c1c4..f976e53a863bd2ddba227cab28ffdd89
  )
 diff --git a/spark-cloudnet/build.gradle b/spark-cloudnet/build.gradle
 new file mode 100644
-index 0000000000000000000000000000000000000000..75ad47013dac54c65129c4d3608b81039711f0d2
+index 0000000000000000000000000000000000000000..611134949a0104d236ba80f7a44a0154dcdd8456
 --- /dev/null
 +++ b/spark-cloudnet/build.gradle
-@@ -0,0 +1,41 @@
+@@ -0,0 +1,38 @@
 +plugins {
 +    id 'eu.cloudnetservice.juppiter' version '0.3.2'
 +    id 'com.github.johnrengelman.shadow' version '7.0.0'
@@ -53,7 +48,7 @@ index 0000000000000000000000000000000000000000..75ad47013dac54c65129c4d3608b8103
 +
 +dependencies {
 +    implementation project(':spark-common')
-+    compileOnly 'eu.cloudnetservice.cloudnet:node:4.0.0-SNAPSHOT'
++    compileOnly 'eu.cloudnetservice.cloudnet:node:4.0.0-RC1'
 +}
 +
 +moduleJson {
@@ -68,12 +63,9 @@ index 0000000000000000000000000000000000000000..75ad47013dac54c65129c4d3608b8103
 +shadowJar {
 +    archiveName = "spark-${project.pluginVersion}-cloudnet.jar"
 +
-+    relocate 'okio', 'me.lucko.spark.lib.okio'
-+    relocate 'okhttp3', 'me.lucko.spark.lib.okhttp3'
 +    relocate 'net.kyori.adventure', 'me.lucko.spark.lib.adventure'
 +    relocate 'net.kyori.examination', 'me.lucko.spark.lib.adventure.examination'
 +    relocate 'net.bytebuddy', 'me.lucko.spark.lib.bytebuddy'
-+    relocate 'org.tukaani.xz', 'me.lucko.spark.lib.xz'
 +    relocate 'com.google.protobuf', 'me.lucko.spark.lib.protobuf'
 +    relocate 'org.objectweb.asm', 'me.lucko.spark.lib.asm'
 +    relocate 'one.profiler', 'me.lucko.spark.lib.asyncprofiler'
@@ -89,10 +81,10 @@ index 0000000000000000000000000000000000000000..75ad47013dac54c65129c4d3608b8103
 +}
 diff --git a/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetClassSourceLookup.java b/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetClassSourceLookup.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..847de19003121d96db73de48261cb14ab6082f0a
+index 0000000000000000000000000000000000000000..b8a6e8c0f9d451d3da48cc87cc240e19dd604be4
 --- /dev/null
 +++ b/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetClassSourceLookup.java
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,45 @@
 +/*
 + * This file is part of spark.
 + *
@@ -118,7 +110,6 @@ index 0000000000000000000000000000000000000000..847de19003121d96db73de48261cb14a
 +import eu.cloudnetservice.driver.module.ModuleProvider;
 +import eu.cloudnetservice.driver.module.ModuleWrapper;
 +import me.lucko.spark.common.util.ClassSourceLookup;
-+import org.jetbrains.annotations.Nullable;
 +
 +public class CloudNetClassSourceLookup extends ClassSourceLookup.ByClassLoader {
 +
@@ -129,7 +120,7 @@ index 0000000000000000000000000000000000000000..847de19003121d96db73de48261cb14a
 +	}
 +
 +	@Override
-+	public @Nullable String identify(ClassLoader loader) {
++	public String identify(ClassLoader loader) {
 +		for (ModuleWrapper module : moduleProvider.modules()) {
 +			if (module.classLoader() == loader) {
 +				return module.moduleConfiguration().name();
