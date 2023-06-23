@@ -5,10 +5,10 @@ Subject: [PATCH] add cloudnet support
 
 
 diff --git a/build.gradle b/build.gradle
-index 2c139bb522fa0aa0b529eeb6acb0abc0d5e7a641..8327cf7fa5f1a689475ff95c120b881e3e220a8c 100644
+index 4c98616c6c48d13516df7d085831f22bcc5ad55a..890105085d2dcc849ede17715fed31be9780a44e 100644
 --- a/build.gradle
 +++ b/build.gradle
-@@ -26,7 +26,7 @@ subprojects {
+@@ -22,7 +22,7 @@ subprojects {
  
      tasks.withType(JavaCompile) {
          options.encoding = 'UTF-8'
@@ -17,7 +17,7 @@ index 2c139bb522fa0aa0b529eeb6acb0abc0d5e7a641..8327cf7fa5f1a689475ff95c120b881e
      }
  
      processResources {
-@@ -45,6 +45,7 @@ subprojects {
+@@ -41,6 +41,7 @@ subprojects {
          maven { url "https://jitpack.io" }
      }
  
@@ -26,10 +26,10 @@ index 2c139bb522fa0aa0b529eeb6acb0abc0d5e7a641..8327cf7fa5f1a689475ff95c120b881e
  
  def determinePatchVersion() {
 diff --git a/settings.gradle b/settings.gradle
-index de6126d4a1918be9cdb2c37038c2b0cb5a19c1c4..f976e53a863bd2ddba227cab28ffdd8999b99c75 100644
+index 095042e0f55fb1112bb0a2870b00d015006c48ac..d492cb1eafc8c49343490389a65eca25122651e9 100644
 --- a/settings.gradle
 +++ b/settings.gradle
-@@ -23,4 +23,5 @@ include (
+@@ -27,4 +27,5 @@ include (
          'spark-nukkit',
          'spark-waterdog',
          'spark-minestom'
