@@ -5,10 +5,10 @@ Subject: [PATCH] disable forge module due to include-build remapping issues
 
 
 diff --git a/settings.gradle b/settings.gradle
-index 5dd9582819318ebd179aa8410a963f4c702577c4..de6126d4a1918be9cdb2c37038c2b0cb5a19c1c4 100644
+index 82a69d0eef047ce1e636c64a65ec6248a41ffd89..095042e0f55fb1112bb0a2870b00d015006c48ac 100644
 --- a/settings.gradle
 +++ b/settings.gradle
-@@ -18,7 +18,7 @@ include (
+@@ -22,7 +22,7 @@ include (
          'spark-velocity4',
          'spark-sponge7',
          'spark-sponge8',
