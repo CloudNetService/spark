@@ -81,7 +81,7 @@ index 0000000000000000000000000000000000000000..bd71be5a2541a8657def990bd4eb8d5c
 +}
 diff --git a/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetClassSourceLookup.java b/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetClassSourceLookup.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b8a6e8c0f9d451d3da48cc87cc240e19dd604be4
+index 0000000000000000000000000000000000000000..a7874aeb68959a8120b02f443827e9650fdfc8ca
 --- /dev/null
 +++ b/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetClassSourceLookup.java
 @@ -0,0 +1,45 @@
@@ -109,7 +109,7 @@ index 0000000000000000000000000000000000000000..b8a6e8c0f9d451d3da48cc87cc240e19
 +
 +import eu.cloudnetservice.driver.module.ModuleProvider;
 +import eu.cloudnetservice.driver.module.ModuleWrapper;
-+import me.lucko.spark.common.util.ClassSourceLookup;
++import me.lucko.spark.common.sampler.source.ClassSourceLookup;
 +
 +public class CloudNetClassSourceLookup extends ClassSourceLookup.ByClassLoader {
 +
@@ -341,7 +341,7 @@ index 0000000000000000000000000000000000000000..662ea012928fc0f399dae0db27da33ed
 +}
 diff --git a/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetSparkModule.java b/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetSparkModule.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..01b44cc2ccce1195e9595d986cc8ea9c4dfdc199
+index 0000000000000000000000000000000000000000..a13f9c0d57fecea51cd7f1ef4f1b95305a10be32
 --- /dev/null
 +++ b/spark-cloudnet/src/main/java/me/lucko/spark/cloudnet/CloudNetSparkModule.java
 @@ -0,0 +1,95 @@
@@ -380,7 +380,7 @@ index 0000000000000000000000000000000000000000..01b44cc2ccce1195e9595d986cc8ea9c
 +import me.lucko.spark.common.SparkPlugin;
 +import me.lucko.spark.common.command.sender.CommandSender;
 +import me.lucko.spark.common.platform.PlatformInfo;
-+import me.lucko.spark.common.util.ClassSourceLookup;
++import me.lucko.spark.common.sampler.source.ClassSourceLookup;
 +
 +public class CloudNetSparkModule extends DriverModule implements SparkPlugin {
 +
