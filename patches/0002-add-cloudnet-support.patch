@@ -37,13 +37,13 @@ index 095042e0f55fb1112bb0a2870b00d015006c48ac..d492cb1eafc8c49343490389a65eca25
  )
 diff --git a/spark-cloudnet/build.gradle b/spark-cloudnet/build.gradle
 new file mode 100644
-index 0000000000000000000000000000000000000000..611134949a0104d236ba80f7a44a0154dcdd8456
+index 0000000000000000000000000000000000000000..bd71be5a2541a8657def990bd4eb8d5ccb6dbaa5
 --- /dev/null
 +++ b/spark-cloudnet/build.gradle
 @@ -0,0 +1,38 @@
 +plugins {
 +    id 'eu.cloudnetservice.juppiter' version '0.3.2'
-+    id 'com.github.johnrengelman.shadow' version '7.0.0'
++    id 'com.github.johnrengelman.shadow' version '8.1.1'
 +}
 +
 +dependencies {
@@ -61,7 +61,7 @@ index 0000000000000000000000000000000000000000..611134949a0104d236ba80f7a44a0154
 +}
 +
 +shadowJar {
-+    archiveName = "spark-${project.pluginVersion}-cloudnet.jar"
++    archiveFileName = "spark-${project.pluginVersion}-cloudnet.jar"
 +
 +    relocate 'net.kyori.adventure', 'me.lucko.spark.lib.adventure'
 +    relocate 'net.kyori.examination', 'me.lucko.spark.lib.adventure.examination'
